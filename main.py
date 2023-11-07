@@ -3,7 +3,7 @@ def main():
     print(open_character_file(character))
 
 def select_character_file(): 
-    name = input("enter character name: ") 
+    name = input("enter character name: ").lower()
     return f"stareaters/SE_{name}.txt"
 
 def open_character_file(character):
