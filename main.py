@@ -72,6 +72,18 @@ class Synthetic(Star_Eater):
         self.print_name()
         return f"{self.name} is a {self.size}, {self.__core_type} core Star Eater\nThe unique feature they possess is: {self.special}\n"
 
+class Cold(Star_Eater):
+    def __init__(self, name, level, size, special):
+        super().__init__(name, level)
+        self.size = size
+        self.special = special
+        self.__core_type = "Cold"
+
+    def print_profile(self):
+        self.print_name()
+        return f"{self.name} is a {self.size}, {self.__core_type} core Star Eater\nThe unique feature they possess is: {self.special}\n"
+
+
 def select_character_file(): 
     name = input("enter character name: ").lower()
     characterpath = f"stareaters/SE_{name}.txt"
@@ -112,6 +124,9 @@ def find_core_type(star_eater_dict):
         return core_type
     elif star_eater_dict['Core'] == 'Synthetic':
         core_type = Synthetic(star_eater_dict['Name'], star_eater_dict['Level'], star_eater_dict['Size'], star_eater_dict['Special'])
+        return core_type
+    elif star_eater_dict['Core'] == 'Cold':
+        core_type = Cold(star_eater_dict['Name'], star_eater_dict['Level'], star_eater_dict['Size'], star_eater_dict['Special'])
         return core_type
     else:
         raise Exception("No valid Core Type was chosen or the Core Type was misspelled. Check character file")
