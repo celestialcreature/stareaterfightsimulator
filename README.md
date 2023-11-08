@@ -14,3 +14,17 @@ Special-<br>
 <br><br>
 core options:<br>
 Common, Molten, Livable, Synthetic, Cold, Void
+<br><br>
+planned stuff:[for my reference not yet there lol]<br>
+special attributes:<br>
+Binary - attacks twice per turn<br>
+Particles - adds a small damage boost per attack<br>
+Intellegence - increases dodge chance<br>
+Extra Limbs - decreases opponent dodge chance
+<br><br>
+Sizes:<br>
+Extremely Small - Way Less attack + Way More speed and dodge chance
+Small - Less attack + More speed and Dodge Chance<br>
+Average - no stat changes<br>
+Large - More attack + Less speed and dodge chance<br>
+Massive - Lots More attack + Way Less speed and no dodge chance without other attributes

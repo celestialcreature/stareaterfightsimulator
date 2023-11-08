@@ -2,10 +2,9 @@ import os
 
 def main():
     star_eater_1_dict = character()
-    core_type_1 = find_core_type(star_eater_1_dict)
-    
-    star_eater_1 = core_type_1
-    print(core_type_1.print_profile())
+    star_eater_1 = find_core_type(star_eater_1_dict)
+
+    print(star_eater_1.print_profile())
 
 class Star_Eater():
     def __init__(self, name, level):
@@ -86,7 +85,7 @@ class Cold(Star_Eater):
 
 def select_character_file(): 
     name = input("enter character name: ").lower()
-    characterpath = f"stareaters/SE_{name}.txt"
+    characterpath = f"stareaters/{name}.txt"
     if os.path.isfile(characterpath):
         return characterpath
     else:
