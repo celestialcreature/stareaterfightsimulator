@@ -5,15 +5,28 @@ def main():
     star_eater_1 = find_core_type(star_eater_1_dict)
 
     print(star_eater_1.print_profile())
+    print(star_eater_1.health_check())
+    print(star_eater_1.stat_check())
 
+#mother who is proud of her sons
 class Star_Eater():
     def __init__(self, name, level):
         self.name = name
-        self.__level = level
+        self.__level = int(level)
+        self.__health = 9 + self.__level
+
+        self.attack = 9 + self.__level
+        self.speed = 9 + self.__level
+        self.defense = 9 + self.__level
+        self.dodge = 9 + self.__level
 
     def print_name(self):
         print(f"\nYour selected Star Eater is {self.name}!\n")
+
+    def health_check(self):
+        return f"\n{self.name} has {self.__health} hit points!"
     
+#the sons who are doing their best
 class Molten(Star_Eater):
     def __init__(self, name, level, size, special):
         super().__init__(name, level)
@@ -21,10 +34,19 @@ class Molten(Star_Eater):
         self.special = special
         self.__core_type = "Molten"
 
+        self.attack += 5
+        self.speed -= 4
+        self.defense += 1
+        self.dodge += 2
+
+
     def print_profile(self):
         self.print_name()
         return f"{self.name} is a {self.size}, {self.__core_type} core Star Eater\nThe unique feature they possess is: {self.special}\n"
-
+        
+    def stat_check(self):
+        return f"Attack: {self.attack}\nSpeed: {self.speed}\nDefense: {self.defense}\nDodge: {self.dodge}"
+    
 class Common(Star_Eater):
     def __init__(self, name, level, size, special):
         super().__init__(name, level)
@@ -32,10 +54,15 @@ class Common(Star_Eater):
         self.special = special
         self.__core_type = "Common"
 
+        #common does not have base stat changes. basic bitch
+
     def print_profile(self):
         self.print_name()
         return f"{self.name} is a {self.size}, {self.__core_type} core Star Eater\nThe unique feature they possess is: {self.special}\n"
-        
+    
+    def stat_check(self):
+        return f"Attack: {self.attack}\nSpeed: {self.speed}\nDefense: {self.defense}\nDodge: {self.dodge}"
+    
 class Livable(Star_Eater):
     def __init__(self, name, level, size, special):
         super().__init__(name, level)
@@ -43,11 +70,19 @@ class Livable(Star_Eater):
         self.special = special
         self.__core_type = "Livable"
 
+        self.attack += 6
+        self.speed += 4
+        self.defense -= 5
+        self.dodge += 2
+
     def print_profile(self):
         self.print_name()
         print(f"{self.name} is a {self.size}, {self.__core_type} core Star Eater")
         return f"{self.name} is a {self.size}, {self.__core_type} core Star Eater\nThe unique feature they possess is: {self.special}\n"
 
+    def stat_check(self):
+        return f"Attack: {self.attack}\nSpeed: {self.speed}\nDefense: {self.defense}\nDodge: {self.dodge}"
+    
 class Void(Star_Eater):
     def __init__(self, name, level, size, special):
         super().__init__(name, level)
@@ -55,11 +90,19 @@ class Void(Star_Eater):
         self.special = special
         self.__core_type = "Void"
 
+        self.attack += 10
+        self.speed -= 5
+        self.defense -= 2
+        self.dodge += 3
+
     def print_profile(self):
         self.print_name()
         print(f"{self.name} is a {self.size}, {self.__core_type} core Star Eater")
         return f"{self.name} is a {self.size}, {self.__core_type} core Star Eater\nThe unique feature they possess is: {self.special}\n"
 
+    def stat_check(self):
+        return f"Attack: {self.attack}\nSpeed: {self.speed}\nDefense: {self.defense}\nDodge: {self.dodge}"
+    
 class Synthetic(Star_Eater):
     def __init__(self, name, level, size, special):
         super().__init__(name, level)
@@ -67,10 +110,18 @@ class Synthetic(Star_Eater):
         self.special = special
         self.__core_type = "Synthetic"
 
+        self.attack += 8
+        self.speed += 3
+        self.defense -= 3
+        self.dodge -= 1
+
     def print_profile(self):
         self.print_name()
         return f"{self.name} is a {self.size}, {self.__core_type} core Star Eater\nThe unique feature they possess is: {self.special}\n"
 
+    def stat_check(self):
+        return f"Attack: {self.attack}\nSpeed: {self.speed}\nDefense: {self.defense}\nDodge: {self.dodge}"
+    
 class Cold(Star_Eater):
     def __init__(self, name, level, size, special):
         super().__init__(name, level)
@@ -78,10 +129,20 @@ class Cold(Star_Eater):
         self.special = special
         self.__core_type = "Cold"
 
+        self.attack -= 5
+        self.speed += 10
+        self.defense += 5
+        self.dodge += 3
+
     def print_profile(self):
         self.print_name()
         return f"{self.name} is a {self.size}, {self.__core_type} core Star Eater\nThe unique feature they possess is: {self.special}\n"
 
+    def stat_check(self):
+        return f"Attack: {self.attack}\nSpeed: {self.speed}\nDefense: {self.defense}\nDodge: {self.dodge}"
+    
+#end of classes section
+#functions down here just chillin
 
 def select_character_file(): 
     name = input("enter character name: ").lower()
