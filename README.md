@@ -1,7 +1,7 @@
 # Star Eater arena
 Program to take in two Star Eater characters and make them fight each other. 
 <br>
-Just a little project to do to practice things
+Just a little project to do to practice things, This is my first ever project built by myself from the ground up in python.
 <br><br>
 Accepts a character file containing character information and uses that information to run a small battle simulation
 <br><br>
