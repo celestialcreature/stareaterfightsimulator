@@ -5,21 +5,26 @@ def main():
     star_eater_1 = find_core_type(star_eater_1_dict)
 
     # print(star_eater_1.print_profile())
-    print(star_eater_1.health_check())
     print(star_eater_1.stat_check())
 
     star_eater_2_dict = character()
     star_eater_2 = find_core_type(star_eater_2_dict)
 
     # print(star_eater_2.print_profile())
-    print(star_eater_2.health_check())
     print(star_eater_2.stat_check())
+
+    if star_eater_1.speed > star_eater_2.speed:
+        faster_star_eater = star_eater_1
+        slower_star_eater = star_eater_2
+    else:
+        faster_star_eater = star_eater_2
+        slower_star_eater = star_eater_1
     
-    while (star_eater_1.health_check() >= 0) and (star_eater_2.health_check() >= 0):
-        star_eater_1.fire_laser(star_eater_2)
-        if star_eater_2.health_check() <= 0:
+    while (faster_star_eater.health_check() >= 0) and (slower_star_eater.health_check() >= 0):
+        faster_star_eater.fire_laser(slower_star_eater)
+        if slower_star_eater.health_check() <= 0:
             return 
-        star_eater_2.fire_laser(star_eater_1)
+        slower_star_eater.fire_laser(faster_star_eater)
 
 #mother who is proud of her sons
 class Star_Eater():
@@ -156,6 +161,7 @@ class Cold(Star_Eater):
  
 #end of classes section
 #functions down here just chillin
+
 
 def select_character_file(): 
     name = input("enter character name: ").lower()
