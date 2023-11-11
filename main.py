@@ -20,16 +20,22 @@ def main():
         faster_star_eater = star_eater_2
         slower_star_eater = star_eater_1
     
+    print(f"\n{faster_star_eater.name} is faster than {slower_star_eater.name}!\n{faster_star_eater.name} goes first\n")
+
     while (faster_star_eater.health_check() >= 0) and (slower_star_eater.health_check() >= 0):
         faster_star_eater.fire_laser(slower_star_eater)
+        faster_star_eater.special_effects(slower_star_eater)
         if slower_star_eater.health_check() <= 0:
             return 
         slower_star_eater.fire_laser(faster_star_eater)
+        slower_star_eater.special_effects(faster_star_eater)
 
 #mother who is proud of her sons
 class Star_Eater():
-    def __init__(self, name, level):
+    def __init__(self, name, level, size, special):
         self.name = name
+        self.size = size
+        self.special = special
         self.__level = int(level)
         self.__health = 30 + self.__level
 
@@ -38,6 +44,21 @@ class Star_Eater():
         self.defense = 9 + self.__level
         self.dodge = 9 + self.__level
 
+    def special_effects(self, target):
+        if self.special == "Particles":
+            if target.__health <= 0:
+                return
+            damage = (self.attack // 2) - (target.defense // 2)
+            if damage <= 0:
+                damage = 1
+            print(f"{target.name} has been hit by {self.name}'s particles. they do an aditional {damage} damage!")
+            target.take_damage(damage)
+        elif self.special == "Binary":
+            return self.fire_laser(target)
+        else:
+            return
+        
+            
     def stat_check(self):
         return f"Health: {self.__health}\nAttack: {self.attack}\nSpeed: {self.speed}\nDefense: {self.defense}\nDodge: {self.dodge}"
     
@@ -48,7 +69,6 @@ class Star_Eater():
         return self.__health
     
     def take_damage(self, damage):
-        print(f"{self.name} has been hit!")
         self.__health -= damage
         if self.__health < 0:
             print(f"{self.name} has lost.")
@@ -61,18 +81,17 @@ class Star_Eater():
             damage = 1
         print(f"{self.name} fires a laser at {target.name}. it does {damage} damage!")
         target.take_damage(damage)
+            
     
 #the sons who are doing their best
 class Molten(Star_Eater):
     def __init__(self, name, level, size, special):
-        super().__init__(name, level)
-        self.size = size
-        self.special = special
+        super().__init__(name, level, size, special)
         self.__core_type = "Molten"
 
         self.attack += 5
         self.speed -= 4
-        self.defense += 1
+        self.defense -= 4
         self.dodge += 2
 
 
@@ -82,9 +101,7 @@ class Molten(Star_Eater):
     
 class Common(Star_Eater):
     def __init__(self, name, level, size, special):
-        super().__init__(name, level)
-        self.size = size
-        self.special = special
+        super().__init__(name, level, size, special)
         self.__core_type = "Common"
 
         #common does not have base stat changes. basic bitch
@@ -95,9 +112,7 @@ class Common(Star_Eater):
     
 class Livable(Star_Eater):
     def __init__(self, name, level, size, special):
-        super().__init__(name, level)
-        self.size = size
-        self.special = special
+        super().__init__(name, level, size, special)
         self.__core_type = "Livable"
 
         self.attack += 6
@@ -112,9 +127,7 @@ class Livable(Star_Eater):
    
 class Void(Star_Eater):
     def __init__(self, name, level, size, special):
-        super().__init__(name, level)
-        self.size = size
-        self.special = special
+        super().__init__(name, level, size, special)
         self.__core_type = "Void"
 
         self.attack += 10
@@ -129,14 +142,12 @@ class Void(Star_Eater):
  
 class Synthetic(Star_Eater):
     def __init__(self, name, level, size, special):
-        super().__init__(name, level)
-        self.size = size
-        self.special = special
+        super().__init__(name, level,  size, special)
         self.__core_type = "Synthetic"
 
-        self.attack += 8
+        self.attack += 6
         self.speed += 3
-        self.defense -= 3
+        self.defense -= 8
         self.dodge -= 1
 
     def print_profile(self):
@@ -145,9 +156,7 @@ class Synthetic(Star_Eater):
 
 class Cold(Star_Eater):
     def __init__(self, name, level, size, special):
-        super().__init__(name, level)
-        self.size = size
-        self.special = special
+        super().__init__(name, level,  size, special)
         self.__core_type = "Cold"
 
         self.attack -= 5
